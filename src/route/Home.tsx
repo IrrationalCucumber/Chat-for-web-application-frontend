@@ -5,13 +5,15 @@ import "./style.css";
 
 export default function Home() {
   const sampleChatUser = ["Adrean", "John", "Doe", "Jane", "Smith"];
+  // Define messages as objects with sender and text
   const sampleChatMessage = [
-    "Hello, how are you?",
-    "I'm fine, thanks!",
-    "What about you?",
-    "Doing great, just working on some projects.",
-    "That's nice to hear!",
+    { sender: "me", text: "Hello, how are you?" },
+    { sender: "other", text: "I'm fine, thanks!" },
+    { sender: "me", text: "What about you?" },
+    { sender: "other", text: "Doing great, just working on some projects." },
+    { sender: "me", text: "That's nice to hear!" },
   ];
+
   const [selectedTab, setSelectedTab] = React.useState(0); // Track selected tab index
   return (
     <div>
@@ -52,9 +54,15 @@ export default function Home() {
                   {user}
                 </Typography>
               </Sheet>
+              {/* Map through the messages for the selected user */}
               {sampleChatMessage.map((message, j) => (
-                <Sheet key={j} className="tab__message">
-                  <Typography>{message}</Typography>
+                <Sheet
+                  key={j}
+                  className={`tab__message ${
+                    message.sender === "me" ? "message--me" : "message--other"
+                  }`}
+                >
+                  <Typography>{message.text}</Typography>
                 </Sheet>
               ))}
             </TabPanel>
