@@ -58,7 +58,7 @@ export default function Home() {
               {sampleChatMessage.map((message, j) => (
                 <Sheet
                   key={j}
-                  className={`tab__message ${
+                  className={`tab__message__${
                     message.sender === "me" ? "message--me" : "message--other"
                   }`}
                 >

@@ -22,3 +22,15 @@ body {
 .tab__header{
     padding: 1rem;
 }
+
+.tab__message__message-me{
+    background-color: #1ff354;
+    color: #ffff;
+    text-align: right;
+}
+
+.tab__message__message-other{
+    background-color: #d4cfc5;
+    color: #ffff;
+    text-align: left;
+}
