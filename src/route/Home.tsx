@@ -65,12 +65,14 @@ export default function Home() {
                   <Typography>{message.text}</Typography>
                 </Sheet>
               ))}
-              <input
-                type="text"
-                placeholder="Type a message..."
-                className="tab__input"
-              />
-              <button className="tab__send-button">Send</button>
+              <div className="tab__input-container">
+                <input
+                  type="text"
+                  placeholder="Type a message..."
+                  className="tab__input"
+                />
+                <button className="tab__send-button">Send</button>
+              </div>
             </TabPanel>
           )
         )}

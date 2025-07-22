@@ -34,3 +34,9 @@ body {
     color: #ffff;
     text-align: left;
 }
+
+.tab__input-container {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
