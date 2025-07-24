@@ -20,23 +20,28 @@ body {
 }
 
 .tab__header{
+    height: 10%;
     padding: 1rem;
 }
 
-.tab__message__message-me{
+.tab__message{
+    height: 70%;
     background-color: #1ff354;
     color: #ffff;
     text-align: right;
 }
 
 .tab__message__message-other{
+    height: 70%;
     background-color: #d4cfc5;
     color: #ffff;
     text-align: left;
 }
 
 .tab__input-container {
+    height: 10%;
     display: flex;
     align-items: center;
     padding: 1rem;
+    border: 2px solid #000
 }

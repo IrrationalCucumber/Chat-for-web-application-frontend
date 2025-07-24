@@ -54,17 +54,12 @@ export default function Home() {
                   {user}
                 </Typography>
               </Sheet>
-              {/* Map through the messages for the selected user */}
-              {sampleChatMessage.map((message, j) => (
-                <Sheet
-                  key={j}
-                  className={`tab__message__${
-                    message.sender === "me" ? "message--me" : "message--other"
-                  }`}
-                >
-                  <Typography>{message.text}</Typography>
-                </Sheet>
-              ))}
+              <Sheet className={`tab__message`}>
+                {/* Map through the messages for the selected user */}
+                {sampleChatMessage.map((message, j) => (
+                  <Typography key={j}>{message.text}</Typography>
+                ))}{" "}
+              </Sheet>
               <div className="tab__input-container">
                 <input
                   type="text"
