@@ -31,10 +31,16 @@ body {
     text-align: right;
 }
 
-.tab__message__message-other{
-    height: 70%;
-    background-color: #d4cfc5;
-    color: #ffff;
+.tab__message-sender{
+    /* background-color: #25e23e;;
+    padding:  0 0 0 0.5rem;
+    color: #ffff; */
+    text-align: right;
+}
+
+.tab__message-other{
+    /* background-color: #9ba19c;;
+    color: #ffff; */
     text-align: left;
 }
 
