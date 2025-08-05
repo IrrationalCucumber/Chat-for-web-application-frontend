@@ -6,6 +6,8 @@ import "./style.css";
 export default function Home() {
   const sampleChatUser = ["Adrean", "John", "Doe", "Jane", "Smith"];
   // Define messages as objects with sender and text
+  // Change the object to actual data structure
+  // to be used in the chat application
   const [sampleChatMessage, setSampleChatMessage] = React.useState([
     { sender: "me", text: "Hello, how are you?" },
     { sender: "other", text: "I'm fine, thanks!" },
@@ -83,9 +85,16 @@ export default function Home() {
                   className="tab__input"
                   name="message"
                   value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
+                  onChange={(e) => setInputMessage(e.target.value)} // update value what user entered
                 />
-                <button onClick={() => addMessage("me", inputMessage)}>
+                <button
+                  onClick={() => {
+                    if (inputMessage.trim() !== "") {
+                      addMessage("me", inputMessage); //message sender is "me"
+                      setInputMessage(""); // Clear input after sending
+                    }
+                  }}
+                >
                   Send
                 </button>
               </div>
