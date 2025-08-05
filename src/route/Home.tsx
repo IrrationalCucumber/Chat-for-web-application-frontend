@@ -6,15 +6,21 @@ import "./style.css";
 export default function Home() {
   const sampleChatUser = ["Adrean", "John", "Doe", "Jane", "Smith"];
   // Define messages as objects with sender and text
-  const sampleChatMessage = [
+  const [sampleChatMessage, setSampleChatMessage] = React.useState([
     { sender: "me", text: "Hello, how are you?" },
     { sender: "other", text: "I'm fine, thanks!" },
     { sender: "me", text: "What about you?" },
     { sender: "other", text: "Doing great, just working on some projects." },
     { sender: "me", text: "That's nice to hear!" },
-  ];
+  ]);
 
   const [selectedTab, setSelectedTab] = React.useState(0); // Track selected tab index
+  //variable for inputted message
+  const [inputMessage, setInputMessage] = React.useState("");
+  //add message function
+  const addMessage = (sender: string, text: string) => {
+    setSampleChatMessage((prev) => [...prev, { sender, text }]);
+  };
   return (
     <div>
       {/* <Navbar /> */}
@@ -75,8 +81,13 @@ export default function Home() {
                   type="text"
                   placeholder="Type a message..."
                   className="tab__input"
+                  name="message"
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
                 />
-                <button className="tab__send-button">Send</button>
+                <button onClick={() => addMessage("me", inputMessage)}>
+                  Send
+                </button>
               </div>
             </TabPanel>
           )
