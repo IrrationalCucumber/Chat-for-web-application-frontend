@@ -1,6 +1,6 @@
 import * as React from "react";
 // import Navbar from "../components/Navbar";
-import { Tabs, TabList, Tab, TabPanel, Sheet, Typography } from "@mui/joy";
+import { Tabs, TabList, Tab, TabPanel, Sheet, Avatar } from "@mui/joy";
 import "./style.css";
 
 export default function Home() {
@@ -50,57 +50,50 @@ export default function Home() {
           ))}
         </TabList>
         {/* Render the content of the selected tab */}
-        {sampleChatUser.map(
-          (
-            user,
-            i
-            // Map through the users to create a tab panel for each user
-          ) => (
-            <TabPanel value={i} key={i} className="tab__panel">
-              <Sheet className="tab__header" variant="soft">
-                <Typography color="neutral" noWrap={false} variant="plain">
-                  {user}
-                </Typography>
-              </Sheet>
-              <Sheet className={`tab__message`}>
-                {/* Map through the messages for the selected user */}
-                {sampleChatMessage.map((message, j) => (
-                  <p
-                    key={j}
-                    className={
-                      message.sender === "me"
-                        ? "tab__message-sender"
-                        : "tab__message-other"
-                    }
-                  >
-                    {/* Display the sender and message text */}
-                    {message.text}
-                  </p>
-                ))}
-              </Sheet>
-              <div className="tab__input-container">
-                <input
-                  type="text"
-                  placeholder="Type a message..."
-                  className="tab__input"
-                  name="message"
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)} // update value what user entered
-                />
-                <button
-                  onClick={() => {
-                    if (inputMessage.trim() !== "") {
-                      addMessage("me", inputMessage); //message sender is "me"
-                      setInputMessage(""); // Clear input after sending
-                    }
-                  }}
+        {sampleChatUser.map((user, i) => (
+          <TabPanel value={i} key={i} className="tab__panel">
+            <Sheet className="tab__header" variant="soft">
+              <Avatar color="success" size="lg" variant="soft" />
+              <h3 className="tab__header__user">{user}</h3>
+            </Sheet>
+            <Sheet className={`tab__message`}>
+              {/* Map through the messages for the selected user */}
+              {sampleChatMessage.map((message, j) => (
+                <p
+                  key={j}
+                  className={
+                    message.sender === "me"
+                      ? "tab__message-sender"
+                      : "tab__message-other"
+                  }
                 >
-                  Send
-                </button>
-              </div>
-            </TabPanel>
-          )
-        )}
+                  {/* Display the sender and message text */}
+                  {message.text}
+                </p>
+              ))}
+            </Sheet>
+            <div className="tab__input-container">
+              <input
+                type="text"
+                placeholder="Type a message..."
+                className="tab__input"
+                name="message"
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)} // update value what user entered
+              />
+              <button
+                onClick={() => {
+                  if (inputMessage.trim() !== "") {
+                    addMessage("me", inputMessage); //message sender is "me"
+                    setInputMessage(""); // Clear input after sending
+                  }
+                }}
+              >
+                Send
+              </button>
+            </div>
+          </TabPanel>
+        ))}
       </Tabs>
     </div>
   );
