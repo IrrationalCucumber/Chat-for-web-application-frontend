@@ -1,6 +1,18 @@
 import * as React from "react";
 // import Navbar from "../components/Navbar";
-import { Tabs, TabList, Tab, TabPanel, Sheet, Avatar } from "@mui/joy";
+import {
+  Tabs,
+  TabList,
+  Tab,
+  TabPanel,
+  Sheet,
+  Avatar,
+  Dropdown,
+  MenuButton,
+  Menu,
+  MenuItem,
+} from "@mui/joy";
+import { MoreHoriz } from "@mui/icons-material";
 import "./style.css";
 
 export default function Home() {
@@ -46,6 +58,24 @@ export default function Home() {
               key={i} // Use the user name as the value for the tab
             >
               {user}
+              <Dropdown>
+                {/* Elaborate dropdown further */}
+                <MenuButton
+                  variant="plain"
+                  color="success"
+                  size="sm"
+                  sx={{
+                    borderRadius: "50%",
+                    width: "2rem",
+                  }}
+                >
+                  <MoreHoriz />
+                </MenuButton>
+                <Menu variant="solid" color="success" size="sm">
+                  <MenuItem>Add to Favorites</MenuItem>
+                  <MenuItem>Block User</MenuItem>
+                </Menu>
+              </Dropdown>
             </Tab>
           ))}
         </TabList>
