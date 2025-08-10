@@ -18,7 +18,7 @@ import "./style.css";
 export default function Home() {
   //const sampleChatUser = ["Adrean", "John", "Doe", "Jane", "Smith"];
   const [sampleChatUser, setSampleChatUser] = React.useState([
-    { id: 1, user: "Adrean", favorite: false, block: false },
+    { id: 1, user: "Adrean", favorite: true, block: false },
     { id: 2, user: "John", favorite: false, block: false },
     { id: 3, user: "Doe", favorite: false, block: false },
     { id: 4, user: "Jane", favorite: false, block: false },
@@ -69,6 +69,7 @@ export default function Home() {
               key={id} // Use the user name as the value for the tab
             >
               {user.user}
+              {user.favorite && <span className="tab__favorite">★</span>}
               <Dropdown>
                 {/* Elaborate dropdown further */}
                 <MenuButton
