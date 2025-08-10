@@ -16,7 +16,14 @@ import { MoreHoriz } from "@mui/icons-material";
 import "./style.css";
 
 export default function Home() {
-  const sampleChatUser = ["Adrean", "John", "Doe", "Jane", "Smith"];
+  //const sampleChatUser = ["Adrean", "John", "Doe", "Jane", "Smith"];
+  const [sampleChatUser, setSampleChatUser] = React.useState([
+    { id: 1, user: "Adrean", favorite: false, block: false },
+    { id: 2, user: "John", favorite: false, block: false },
+    { id: 3, user: "Doe", favorite: false, block: false },
+    { id: 4, user: "Jane", favorite: false, block: false },
+    { id: 5, user: "Smith", favorite: false, block: false },
+  ]);
   // Define messages as objects with sender and text
   // Change the object to actual data structure
   // to be used in the chat application
@@ -35,6 +42,10 @@ export default function Home() {
   const addMessage = (sender: string, text: string) => {
     setSampleChatMessage((prev) => [...prev, { sender, text }]);
   };
+  // Function to toggle favorite status
+  // const toogleFavorite = (user: string) => {
+  //   // setSampleChatUser((prev) => [...prev, { user, favorite: true }]);
+  // };
   return (
     <div>
       {/* <Navbar /> */}
@@ -50,14 +61,14 @@ export default function Home() {
         }}
       >
         <TabList className="tab__list">
-          {sampleChatUser.map((user, i) => (
+          {sampleChatUser.map((user, id) => (
             <Tab
               className="tab"
               variant={"outlined"}
-              value={i} // Use the user name as the value for the tab
-              key={i} // Use the user name as the value for the tab
+              value={id} // Use the user name as the value for the tab
+              key={id} // Use the user name as the value for the tab
             >
-              {user}
+              {user.user}
               <Dropdown>
                 {/* Elaborate dropdown further */}
                 <MenuButton
@@ -80,11 +91,11 @@ export default function Home() {
           ))}
         </TabList>
         {/* Render the content of the selected tab */}
-        {sampleChatUser.map((user, i) => (
-          <TabPanel value={i} key={i} className="tab__panel">
+        {sampleChatUser.map((user, id) => (
+          <TabPanel value={id} key={id} className="tab__panel">
             <Sheet className="tab__header" variant="soft">
               <Avatar color="success" size="lg" variant="soft" />
-              <h3 className="tab__header__user">{user}</h3>
+              <h3 className="tab__header__user">{user.user}</h3>
             </Sheet>
             <Sheet className={`tab__message`}>
               {/* Map through the messages for the selected user */}
