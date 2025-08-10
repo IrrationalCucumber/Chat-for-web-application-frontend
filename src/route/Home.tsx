@@ -18,11 +18,11 @@ import "./style.css";
 export default function Home() {
   //const sampleChatUser = ["Adrean", "John", "Doe", "Jane", "Smith"];
   const [sampleChatUser, setSampleChatUser] = React.useState([
-    { id: 1, user: "Adrean", favorite: true, block: false },
-    { id: 2, user: "John", favorite: false, block: false },
-    { id: 3, user: "Doe", favorite: false, block: false },
-    { id: 4, user: "Jane", favorite: false, block: false },
-    { id: 5, user: "Smith", favorite: false, block: false },
+    { id: 1, user: "Adrean", favorite: true },
+    { id: 2, user: "John", favorite: false },
+    { id: 3, user: "Doe", favorite: false },
+    { id: 4, user: "Jane", favorite: false },
+    { id: 5, user: "Smith", favorite: false },
   ]);
   // Define messages as objects with sender and text
   // Change the object to actual data structure
@@ -43,9 +43,12 @@ export default function Home() {
     setSampleChatMessage((prev) => [...prev, { sender, text }]);
   };
   // Function to toggle favorite status
-  // const toogleFavorite = (user: string) => {
-  //   // setSampleChatUser((prev) => [...prev, { user, favorite: true }]);
-  // };
+  const toogleFavorite = (id: number) => {
+    alert(`Toggled favorite for ${id}`);
+    setSampleChatUser((prev) =>
+      prev.map((user) => (user.id === id ? { ...user, favorite: true } : user))
+    );
+  };
   return (
     <div>
       {/* <Navbar /> */}
@@ -61,12 +64,12 @@ export default function Home() {
         }}
       >
         <TabList className="tab__list">
-          {sampleChatUser.map((user, id) => (
+          {sampleChatUser.map((user) => (
             <Tab
               className="tab"
               variant={"outlined"}
-              value={id} // Use the user name as the value for the tab
-              key={id} // Use the user name as the value for the tab
+              value={user.id} // Use the user name as the value for the tab
+              key={user.id} // Use the user name as the value for the tab
             >
               {user.user}
               {user.favorite && <span className="tab__favorite">★</span>}
@@ -84,7 +87,9 @@ export default function Home() {
                   <MoreHoriz />
                 </MenuButton>
                 <Menu variant="solid" color="success" size="sm">
-                  <MenuItem>Add to Favorites</MenuItem>
+                  <MenuItem onClick={() => toogleFavorite(user.id)}>
+                    Add to Favorites
+                  </MenuItem>
                   <MenuItem>Block User</MenuItem>
                 </Menu>
               </Dropdown>
@@ -92,8 +97,8 @@ export default function Home() {
           ))}
         </TabList>
         {/* Render the content of the selected tab */}
-        {sampleChatUser.map((user, id) => (
-          <TabPanel value={id} key={id} className="tab__panel">
+        {sampleChatUser.map((user) => (
+          <TabPanel value={user.id} key={user.id} className="tab__panel">
             <Sheet className="tab__header" variant="soft">
               <Avatar color="success" size="lg" variant="soft" />
               <h3 className="tab__header__user">{user.user}</h3>
