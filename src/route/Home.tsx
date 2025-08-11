@@ -18,11 +18,11 @@ import "./style.css";
 export default function Home() {
   //const sampleChatUser = ["Adrean", "John", "Doe", "Jane", "Smith"];
   const [sampleChatUser, setSampleChatUser] = React.useState([
-    { id: 1, user: "Adrean", favorite: true },
-    { id: 2, user: "John", favorite: false },
-    { id: 3, user: "Doe", favorite: false },
-    { id: 4, user: "Jane", favorite: false },
-    { id: 5, user: "Smith", favorite: false },
+    { id: 1, user: "Adrean", favorite: true, blocked: false },
+    { id: 2, user: "John", favorite: false, blocked: false },
+    { id: 3, user: "Doe", favorite: false, blocked: false },
+    { id: 4, user: "Jane", favorite: false, blocked: false },
+    { id: 5, user: "Smith", favorite: false, blocked: false },
   ]);
   // Define messages as objects with sender and text
   // Change the object to actual data structure
@@ -54,6 +54,19 @@ export default function Home() {
       )
     );
   };
+  //function for block user
+  // placholer funcftion
+  const blockUser = (id: number) => {
+    setSampleChatUser((prev) =>
+      prev.map((user) =>
+        user.id === id && user.blocked === false
+          ? { ...user, blocked: true }
+          : user.id === id && user.blocked === true
+          ? { ...user, blocked: false }
+          : user
+      )
+    );
+  };
 
   return (
     <div>
@@ -79,6 +92,7 @@ export default function Home() {
             >
               {user.user}
               {user.favorite && <span className="tab__favorite">★</span>}
+              {user.blocked && <span className="tab__blocked">🚫</span>}
               <Dropdown>
                 {/* Elaborate dropdown further */}
                 <MenuButton
@@ -98,7 +112,9 @@ export default function Home() {
                       ? "Remove from Favorites"
                       : "Add to Favorites"}
                   </MenuItem>
-                  <MenuItem>Block User</MenuItem>
+                  <MenuItem onClick={() => blockUser(user.id)}>
+                    Block User
+                  </MenuItem>
                 </Menu>
               </Dropdown>
             </Tab>
