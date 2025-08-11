@@ -44,11 +44,17 @@ export default function Home() {
   };
   // Function to toggle favorite status
   const toogleFavorite = (id: number) => {
-    alert(`Toggled favorite for ${id}`);
     setSampleChatUser((prev) =>
-      prev.map((user) => (user.id === id ? { ...user, favorite: true } : user))
+      prev.map((user) =>
+        user.id === id && user.favorite === false
+          ? { ...user, favorite: true }
+          : user.id === id && user.favorite === true
+          ? { ...user, favorite: false }
+          : user
+      )
     );
   };
+
   return (
     <div>
       {/* <Navbar /> */}
@@ -88,7 +94,9 @@ export default function Home() {
                 </MenuButton>
                 <Menu variant="solid" color="success" size="sm">
                   <MenuItem onClick={() => toogleFavorite(user.id)}>
-                    Add to Favorites
+                    {user.favorite
+                      ? "Remove from Favorites"
+                      : "Add to Favorites"}
                   </MenuItem>
                   <MenuItem>Block User</MenuItem>
                 </Menu>
