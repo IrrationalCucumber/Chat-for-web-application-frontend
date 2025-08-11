@@ -44,6 +44,11 @@ export default function Home() {
   };
   // Function to toggle favorite status
   const toogleFavorite = (id: number) => {
+    const userToToggle = sampleChatUser.find((user) => user.id === id);
+    if (userToToggle?.blocked) {
+      alert("Cannot add a blocked user to favorites.");
+      return;
+    }
     setSampleChatUser((prev) =>
       prev.map((user) =>
         user.id === id && user.favorite === false
@@ -60,7 +65,7 @@ export default function Home() {
     setSampleChatUser((prev) =>
       prev.map((user) =>
         user.id === id && user.blocked === false
-          ? { ...user, blocked: true }
+          ? { ...user, blocked: true, favorite: false } // Block user and remove from favorites
           : user.id === id && user.blocked === true
           ? { ...user, blocked: false }
           : user
