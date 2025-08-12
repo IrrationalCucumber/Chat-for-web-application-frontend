@@ -11,6 +11,10 @@ import {
   MenuButton,
   Menu,
   MenuItem,
+  Input,
+  Button,
+  Typography,
+  Box,
 } from "@mui/joy";
 import { MoreHoriz } from "@mui/icons-material";
 import "./style.css";
@@ -132,41 +136,57 @@ export default function Home() {
               <Avatar color="success" size="lg" variant="soft" />
               <h3 className="tab__header__user">{user.user}</h3>
             </Sheet>
-            <Sheet className={`tab__message`}>
+            <Sheet className="tab__message">
               {/* Map through the messages for the selected user */}
               {sampleChatMessage.map((message, j) => (
-                <p
+                <Box
                   key={j}
-                  className={
-                    message.sender === "me"
-                      ? "tab__message-sender"
-                      : "tab__message-other"
-                  }
+                  sx={{
+                    display: "flex",
+                    justifyContent:
+                      message.sender === "me" ? "flex-end" : "flex-start",
+                  }}
                 >
-                  {/* Display the sender and message text */}
-                  {message.text}
-                </p>
+                  <Typography
+                    color="success"
+                    level="body-lg"
+                    variant={message.sender === "me" ? "solid" : "soft"}
+                    sx={{
+                      textAlign: message.sender === "me" ? "right" : "left",
+                      padding: "0.5rem",
+                      margin: ".5rem",
+                      width: "fit-content",
+                      borderRadius: "12px",
+                    }}
+                  >
+                    {message.text}
+                  </Typography>
+                </Box>
               ))}
             </Sheet>
             <div className="tab__input-container">
-              <input
-                type="text"
-                placeholder="Type a message..."
-                className="tab__input"
+              <Input
+                color="success"
+                size="lg"
+                variant="outlined"
                 name="message"
+                className="tab__input"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)} // update value what user entered
               />
-              <button
+              <Button
                 onClick={() => {
                   if (inputMessage.trim() !== "") {
                     addMessage("me", inputMessage); //message sender is "me"
                     setInputMessage(""); // Clear input after sending
                   }
                 }}
+                color="success"
+                size="lg"
+                variant="solid"
               >
                 Send
-              </button>
+              </Button>
             </div>
           </TabPanel>
         ))}
