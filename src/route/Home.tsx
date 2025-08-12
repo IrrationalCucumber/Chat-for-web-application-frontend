@@ -46,6 +46,11 @@ export default function Home() {
   const addMessage = (sender: string, text: string) => {
     setSampleChatMessage((prev) => [...prev, { sender, text }]);
   };
+  //scroll to bottom
+  const messageEndRef = React.useRef<HTMLDivElement | null>(null);
+  React.useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [sampleChatMessage]);
   // Function to toggle favorite status
   const toogleFavorite = (id: number) => {
     const userToToggle = sampleChatUser.find((user) => user.id === id);
@@ -163,6 +168,7 @@ export default function Home() {
                   </Typography>
                 </Box>
               ))}
+              <div ref={messageEndRef} />
             </Sheet>
             <div className="tab__input-container">
               <Input
