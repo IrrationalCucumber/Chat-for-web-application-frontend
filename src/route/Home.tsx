@@ -110,7 +110,11 @@ export default function Home() {
         }}
       >
         <TabList className="tab__list">
-          <Sheet className="tab__list__header" variant="soft">
+          <Sheet
+            className="tab__list__header"
+            variant="soft"
+            sx={{ p: "2rem 1rem" }}
+          >
             <Input
               placeholder="Search user"
               onChange={(event) => handleFilterChange(event)}
