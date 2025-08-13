@@ -81,6 +81,19 @@ export default function Home() {
       )
     );
   };
+  //filter users based on search input
+  const [filterUser, setFilterUser] = React.useState("");
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterUser(event.target.value);
+  };
+  //search user
+  const filterUsers = sampleChatUser.filter((user) => {
+    // check username based on inputs
+    const username = user.user
+      ?.toLowerCase()
+      .includes(filterUser.toLowerCase() ?? "");
+    return username;
+  });
 
   return (
     <div>
@@ -97,7 +110,14 @@ export default function Home() {
         }}
       >
         <TabList className="tab__list">
-          {sampleChatUser.map((user) => (
+          <Sheet className="tab__list__header" variant="soft">
+            <Input
+              placeholder="Search user"
+              onChange={(event) => handleFilterChange(event)}
+            />
+          </Sheet>
+          {/* Map through the sampleChatUser array to create tabs */}
+          {filterUsers.map((user) => (
             <Tab
               className="tab"
               variant={"outlined"}
