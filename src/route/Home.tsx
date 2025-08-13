@@ -95,18 +95,6 @@ export default function Home() {
     return username;
   });
 
-  const [filterUser, setFilterUser] = React.useState("");
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterUser(event.target.value);
-  };
-  //search user
-  const filterUsers = sampleChatUser.filter((user) => {
-    const username = user.user
-      ?.toLowerCase()
-      .includes(filterUser.toLowerCase() ?? "");
-    return username;
-  });
-
   return (
     <div>
       {/* <Navbar /> */}
