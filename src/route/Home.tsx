@@ -27,6 +27,8 @@ export default function Home() {
     { id: 3, user: "Doe", favorite: false, blocked: false },
     { id: 4, user: "Jane", favorite: false, blocked: false },
     { id: 5, user: "Smith", favorite: false, blocked: false },
+    { id: 6, user: "Smith1", favorite: false, blocked: false },
+    { id: 7, user: "Smith2", favorite: false, blocked: false },
   ]);
   // Define messages as objects with sender and text
   // Change the object to actual data structure
@@ -121,42 +123,50 @@ export default function Home() {
             />
           </Sheet>
           {/* Map through the sampleChatUser array to create tabs */}
-          {filterUsers.map((user) => (
-            <Tab
-              className="tab"
-              variant={"outlined"}
-              value={user.id} // Use the user name as the value for the tab
-              key={user.id} // Use the user name as the value for the tab
-            >
-              {user.user}
-              {user.favorite && <span className="tab__favorite">★</span>}
-              {user.blocked && <span className="tab__blocked">🚫</span>}
-              <Dropdown>
-                {/* Elaborate dropdown further */}
-                <MenuButton
-                  variant="plain"
-                  color="success"
-                  size="sm"
-                  sx={{
-                    borderRadius: "50%",
-                    width: "2rem",
-                  }}
-                >
-                  <MoreHoriz />
-                </MenuButton>
-                <Menu variant="solid" color="success" size="sm">
-                  <MenuItem onClick={() => toogleFavorite(user.id)}>
-                    {user.favorite
-                      ? "Remove from Favorites"
-                      : "Add to Favorites"}
-                  </MenuItem>
-                  <MenuItem onClick={() => blockUser(user.id)}>
-                    Block User
-                  </MenuItem>
-                </Menu>
-              </Dropdown>
-            </Tab>
-          ))}
+          <Box
+            sx={{
+              overflowY: "auto",
+              height: "100%",
+              padding: "1px",
+            }}
+          >
+            {filterUsers.map((user) => (
+              <Tab
+                className="tab"
+                variant={"outlined"}
+                value={user.id} // Use the user name as the value for the tab
+                key={user.id} // Use the user name as the value for the tab
+              >
+                {user.user}
+                {user.favorite && <span className="tab__favorite">★</span>}
+                {user.blocked && <span className="tab__blocked">🚫</span>}
+                <Dropdown>
+                  {/* Elaborate dropdown further */}
+                  <MenuButton
+                    variant="plain"
+                    color="success"
+                    size="sm"
+                    sx={{
+                      borderRadius: "50%",
+                      width: "2rem",
+                    }}
+                  >
+                    <MoreHoriz />
+                  </MenuButton>
+                  <Menu variant="solid" color="success" size="sm">
+                    <MenuItem onClick={() => toogleFavorite(user.id)}>
+                      {user.favorite
+                        ? "Remove from Favorites"
+                        : "Add to Favorites"}
+                    </MenuItem>
+                    <MenuItem onClick={() => blockUser(user.id)}>
+                      Block User
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
+              </Tab>
+            ))}
+          </Box>
         </TabList>
         {/* Render the content of the selected tab */}
         {sampleChatUser.map((user) => (
