@@ -15,6 +15,7 @@ import {
   Button,
   Typography,
   Box,
+  Textarea,
 } from "@mui/joy";
 import { Send, MoreHoriz } from "@mui/icons-material";
 import "./style.css";
@@ -205,7 +206,7 @@ export default function Home() {
               <div ref={messageEndRef} />
             </Sheet>
             <div className="tab__input-container">
-              <Input
+              {/* <Input
                 color="success"
                 size="lg"
                 variant="outlined"
@@ -213,6 +214,22 @@ export default function Home() {
                 className="tab__input"
                 value={inputMessage}
                 sx={{ width: "100%", padding: "0.5rem", margin: "0.5rem" }}
+                onChange={(e) => setInputMessage(e.target.value)} // update value what user entered
+              /> */}
+              <Textarea
+                color="success"
+                minRows={1}
+                maxRows={2}
+                placeholder="Type your message here..."
+                size="lg"
+                variant="soft"
+                value={inputMessage}
+                sx={{
+                  width: "100%",
+                  padding: "0.5rem",
+                  margin: "0.5rem",
+                  overflowY: "auto",
+                }}
                 onChange={(e) => setInputMessage(e.target.value)} // update value what user entered
               />
               <Button
