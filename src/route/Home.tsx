@@ -16,7 +16,7 @@ import {
   Typography,
   Box,
 } from "@mui/joy";
-import { MoreHoriz } from "@mui/icons-material";
+import { Send, MoreHoriz } from "@mui/icons-material";
 import "./style.css";
 
 export default function Home() {
@@ -212,6 +212,7 @@ export default function Home() {
                 name="message"
                 className="tab__input"
                 value={inputMessage}
+                sx={{ width: "100%", padding: "0.5rem", margin: "0.5rem" }}
                 onChange={(e) => setInputMessage(e.target.value)} // update value what user entered
               />
               <Button
@@ -225,7 +226,7 @@ export default function Home() {
                 size="lg"
                 variant="solid"
               >
-                Send
+                <Send />
               </Button>
             </div>
           </TabPanel>
