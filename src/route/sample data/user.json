@@ -1,0 +1,42 @@
+[
+     { 
+        "id": 1,
+        "user": "Adrean",
+       "favorite": true,
+        "blocked": false 
+    },
+    { 
+        "id": 2,
+        "user": "John",
+        "favorite": false,
+       "blocked": false },
+    { 
+        "id": 3,
+        "user": "Doe",
+        "favorite": false,
+       "blocked": false 
+    },
+    { 
+        "id": 4,
+        "user": "Jane",
+        "favorite": false,
+        "blocked": false 
+    },
+    { 
+        "id": 5,
+        "user": "Smith",
+        "favorite": false,
+        "blocked": false 
+    },
+    { 
+        "id": 6,
+        "user": "Smith1",
+        "favorite": false,
+        "blocked": false 
+    },
+    { 
+        "id": 7,
+        "user": "Smith2",
+        "favorite": false,
+        "blocked": false }
+]
