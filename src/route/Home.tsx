@@ -98,6 +98,15 @@ export default function Home() {
     return username;
   });
 
+  //handle forn submit
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inputMessage.trim() !== "") {
+      addMessage("me", inputMessage); //message sender is "me"
+      setInputMessage(""); // Clear input after sending
+    }
+  };
+
   return (
     <div>
       {/* <Navbar /> */}
@@ -205,17 +214,12 @@ export default function Home() {
               ))}
               <div ref={messageEndRef} />
             </Sheet>
-            <div className="tab__input-container">
-              {/* <Input
-                color="success"
-                size="lg"
-                variant="outlined"
-                name="message"
-                className="tab__input"
-                value={inputMessage}
-                sx={{ width: "100%", padding: "0.5rem", margin: "0.5rem" }}
-                onChange={(e) => setInputMessage(e.target.value)} // update value what user entered
-              /> */}
+            <form
+              className="tab__input-container"
+              onSubmit={(e) => {
+                handleSendMessage(e);
+              }}
+            >
               <Textarea
                 color="success"
                 minRows={1}
@@ -231,21 +235,28 @@ export default function Home() {
                   overflowY: "auto",
                 }}
                 onChange={(e) => setInputMessage(e.target.value)} // update value what user entered
-              />
-              <Button
-                onClick={() => {
-                  if (inputMessage.trim() !== "") {
-                    addMessage("me", inputMessage); //message sender is "me"
-                    setInputMessage(""); // Clear input after sending
+                onKeyDown={(e) => {
+                  // Enter submits, Shift+Enter creates newline
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    handleSendMessage(e);
                   }
                 }}
+              />
+              <Button
+                // onClick={() => {
+                //   if (inputMessage.trim() !== "") {
+                //     addMessage("me", inputMessage); //message sender is "me"
+                //     setInputMessage(""); // Clear input after sending
+                //   }
+                // }}
+                type="submit"
                 color="success"
                 size="lg"
                 variant="solid"
               >
                 <Send />
               </Button>
-            </div>
+            </form>
           </TabPanel>
         ))}
       </Tabs>
