@@ -204,8 +204,11 @@ export default function Home() {
                       textAlign: message.sender === "me" ? "right" : "left",
                       padding: "0.5rem",
                       margin: ".5rem",
-                      width: "fit-content",
+                      maxWidth: "70%", // limit bubble width so lines wrap
+                      width: "auto", // avoid fit-content issues
                       borderRadius: "12px",
+                      whiteSpace: "pre-wrap", // preserve newlines and multiple spaces
+                      wordBreak: "break-word", // avoid overflow with long words/URLs
                     }}
                   >
                     {message.text}
