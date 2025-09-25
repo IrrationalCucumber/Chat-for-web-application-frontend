@@ -47,9 +47,11 @@ export default function Home() {
     };
     fetchUsers();
     //set interval to refrash page automatically
-    const interval = setInterval(fetchUsers, 20000);
+    const interval = setInterval(fetchUsers, 20000); //refresh every 20 sec
     return () => clearInterval(interval);
   }, [apiURL, userID]);
+  //debug to verify if data is received
+  console.log(chatUsers);
 
   // Define messages as objects with sender and text
   // Change the object to actual data structure
