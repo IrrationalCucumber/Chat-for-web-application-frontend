@@ -19,6 +19,7 @@ import {
 } from "@mui/joy";
 import { Send, MoreHoriz } from "@mui/icons-material";
 import "./style.css";
+import axios from "axios";
 
 export default function Home() {
   //const sampleChatUser = ["Adrean", "John", "Doe", "Jane", "Smith"];
@@ -31,6 +32,25 @@ export default function Home() {
     { id: 6, user: "Smith1", favorite: false, blocked: false },
     { id: 7, user: "Smith2", favorite: false, blocked: false },
   ]);
+  const apiURL = import.meta.env.VITE_URL; //add api for backend in env file
+  const userID = 1; //replace id with current user
+  const [chatUsers, setChatUsers] = React.useState([]); //variable to store chatted users data
+  //fetch all chatted user
+  React.useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await axios.get(`${apiURL}/my-chat/${userID}`);
+        setChatUsers(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchUsers();
+    //set interval to refrash page automatically
+    const interval = setInterval(fetchUsers, 20000);
+    return () => clearInterval(interval);
+  }, [apiURL, userID]);
+
   // Define messages as objects with sender and text
   // Change the object to actual data structure
   // to be used in the chat application
