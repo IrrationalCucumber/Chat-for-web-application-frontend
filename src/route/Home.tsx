@@ -58,13 +58,14 @@ export default function Home() {
   React.useEffect(() => {
     const fetchConvo = async () => {
       const res = await axios.get(`${apiURL}/my-convo/${userID}`);
-      setChatMessage(res.data);
+      setChatMessage(res.data); //store to var chatMessage
     };
     fetchConvo();
-    const interval = setInterval(fetchConvo, 10000);
+    const interval = setInterval(fetchConvo, 10000); // refresh every 10 sec
     return () => clearInterval(interval);
   });
-
+  //check if stored properly
+  console.log(chatMessage);
   // Define messages as objects with sender and text
   // Change the object to actual data structure
   // to be used in the chat application
